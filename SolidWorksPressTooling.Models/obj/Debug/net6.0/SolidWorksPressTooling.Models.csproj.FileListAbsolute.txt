@@ -1,0 +1,12 @@
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\bin\Debug\net6.0\SolidWorksPressTooling.Models.deps.json
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\bin\Debug\net6.0\SolidWorksPressTooling.Models.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\bin\Debug\net6.0\SolidWorksPressTooling.Models.pdb
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.csproj.AssemblyReference.cache
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.AssemblyInfoInputs.cache
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.AssemblyInfo.cs
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.csproj.CoreCompileInputs.cache
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\refint\SolidWorksPressTooling.Models.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\SolidWorksPressTooling.Models.pdb
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Models\obj\Debug\net6.0\ref\SolidWorksPressTooling.Models.dll

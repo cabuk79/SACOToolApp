@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "PMLYM79RjAnO7rT6Z8pJ/2Ckh9mNBETpoGKyz/JFgNghtZSHLjepQUq3BKo3nf4oIXtvYatxG57sPx9GlgtgKA==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\cabuk\\source\\repos\\SolidWorksPressTooling\\SolidWorksPressTooling.Client\\SolidWorksPressTooling.Client.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cabuk\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.25\\microsoft.windows.sdk.net.ref.10.0.19041.25.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1012",
+      "level": "Error",
+      "message": "Platform version is not present for one or more target frameworks, even though they have specified a platform: net6.0-android, net6.0-ios, net6.0-maccatalyst"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\bin\Debug\net6.0\SolidWorksPressTooling.Data.deps.json
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\bin\Debug\net6.0\SolidWorksPressTooling.Data.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\bin\Debug\net6.0\SolidWorksPressTooling.Data.pdb
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\bin\Debug\net6.0\SolidWorksPressTooling.Models.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\bin\Debug\net6.0\SolidWorksPressTooling.Models.pdb
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.csproj.AssemblyReference.cache
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.AssemblyInfoInputs.cache
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.AssemblyInfo.cs
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.csproj.CoreCompileInputs.cache
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.csproj.CopyComplete
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\refint\SolidWorksPressTooling.Data.dll
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\SolidWorksPressTooling.Data.pdb
+C:\Users\cabuk\source\repos\SolidWorksPressTooling\SolidWorksPressTooling.Data\obj\Debug\net6.0\ref\SolidWorksPressTooling.Data.dll

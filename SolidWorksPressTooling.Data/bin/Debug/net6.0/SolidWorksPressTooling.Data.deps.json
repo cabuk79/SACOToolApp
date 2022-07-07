@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "SolidWorksPressTooling.Data/1.0.0": {
+        "dependencies": {
+          "SolidWorksPressTooling.Models": "1.0.0"
+        },
+        "runtime": {
+          "SolidWorksPressTooling.Data.dll": {}
+        }
+      },
+      "SolidWorksPressTooling.Models/1.0.0": {
+        "runtime": {
+          "SolidWorksPressTooling.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SolidWorksPressTooling.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SolidWorksPressTooling.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
