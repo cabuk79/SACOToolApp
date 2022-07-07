@@ -181,20 +181,22 @@ namespace SolidWorksPressTooling.SwAPI
             
             Console.WriteLine(swView.Name);
 
-            swModel.ClearSelection2(true);
+            //swModel.ClearSelection2(true);
 
             //SketchSegment skSegment;
             //SelectData selectData = null;
+            swDrawingDoc = swApp.ActiveDoc;
 
             //create section view
-            var oneone = (75 / 2) / 1000;
-            var twotwo = 45 / 1000;
-            var one = 2000 / 1000;
-            var two = 2000 / 1000;
-            swModel.SketchManager.CreateCornerRectangle(-oneone, -twotwo, 0, one, two, 0);
+            var oneone = 2000 / 1000;
+            var twotwo = 2000 / 1000;
+            double one = ((200.0 / 4.0) / 1000.0);
+            double two = ((200.0 / 4.0) / 1000.0);
+            //swModel.SketchManager.CreateCornerRectangle(-oneone, -twotwo, 0, one, two, 0);
+            swModel.SketchManager.CreateCornerRectangle(-one, -two, 0, one, two, 0);
             //skSegment.Select4(true, selectData);
             //swModel.EditSketch();
-            swDrawingDoc = swApp.ActiveDoc;
+            
 
             var depth = 34.925 / 1000;
             swDrawingDoc.CreateBreakOutSection(depth);
