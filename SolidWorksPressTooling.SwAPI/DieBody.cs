@@ -1,12 +1,5 @@
 ﻿using SldWorks;
 using SolidWorksPressTooling.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolidWorksPressTooling.Data.Contracts;
-using Ninject;
 using SolidWorksPressTooling.Models.Tooling;
 using SolidWorks.Interop.swconst;
 
@@ -108,6 +101,72 @@ namespace SolidWorksPressTooling.SwAPI
 
             //rename the edges for the chamfers
             rename.RenameEdge(swModel, dieSizes.BottomEdge, (double)(dieSizes.BodyBottomStepDia / 2) / 1000, 0, 0, 1);
+        }
+
+        public void CreateDrg()
+        {
+            Drawings drg = new Drawings();
+
+            drg.OpenDrawng();
+
+            DrawingDoc swDrawingDoc = default(DrawingDoc);
+
+
+            swModel = (ModelDoc2)swApp.ActiveDoc;
+            swDrawingDoc = (DrawingDoc)swApp.ActiveDoc;
+
+            var oneone = 2000 / 1000;
+            var twotwo = 2000 / 1000;
+            double one = 2000 / 1000;// ((200.0 / 4.0) / 1000.0);
+            double two = 2000 / 1000; //((200.0 / 4.0) / 1000.0);
+
+            swModel.SketchManager.CreateCornerRectangle(-one, -two, 0, one, two, 0);
+
+
+            var depth = 34.925 / 1000;
+            swDrawingDoc.CreateBreakOutSection(depth);
+
+
+
+
+            //create an array for the dimension positions
+            //xpos1, ypos1, xpos2, ypos2, sum, xdimpos, ydimpos
+            double[ , ] dimensionPositions = 
+            {
+                //{ -(69.00 / 2), -31.75, 69.00 / 2, -31.75, 1.00, 0, -55, 0.10, 1.00 }, //bottom diameter step
+                { -(69.85 / 2), 22.23, 69.85 / 2, -22.23, 1.00, 0, 65, 0.10, 1.00 }///, //body dia
+                //{ -(63.50 / 2), 31.75, 63.50 / 2, 31.75, 1.00, 0, 55, 0.10, 1.00 }, //Top step diameter
+                //{ -(63.50 / 2), 31.75, -(69.00 / 2), -31.75, 1.00, -55, 0, 0.10, 0.00 },
+                //{ -(69.82 / 2), 22.23, -(63.50 / 2), 31.75, 1.00, 50, 50, 0.10, 0.00 }, //Top step dia length
+                //{ -(69.82 / 2), -26.75, -(69.00 / 2), -31.75, 1.00, -45, -31.75 + 15, 0.10, 0.00 }, //bottom diameter step length
+                //{ -(47.00 / 2), 23.75, 47.00 / 2, 23.75, 1.00, 0, 35, 0.10, 1.00 } //carbide insert diameter
+            };
+
+            var countRows = dimensionPositions.Length / 9;
+
+            for (var i = 0; i < countRows; i++)
+            {
+                drg.DimensionDrawing("", dimensionPositions[i, 0], dimensionPositions[i, 1],
+                    dimensionPositions[i, 2], dimensionPositions[i, 3], dimensionPositions[i, 4], dimensionPositions[i, 5],
+                    dimensionPositions[i, 6], dimensionPositions[i, 7], dimensionPositions[i, 8]); //("", 0, 0, 0, 0, 0, 0, dimensionPositions);
+            }
+
+
+
+            //section view
+            
+
+
+            // double[,] dimensionPositions1 =
+            // {
+            //{ 69.00 / 2, 31.75, 0, 0, 2.00, 0, -55 }//, //bottom diameter step
+            //     { 69.85 / 2, 26.75, 0, 0, 2.00, 0, -65 } //body dia
+            //{ 69.00 / 2, 63.50 / 2, 63.50 / 2, 63.50 / 2, 0.00 },  //OAL
+            //{ 63.50 / 2, 63.50 / 2, 63.50 / 2, 63.50 / 2, 1.00 }//,  //top dia step                
+            // { 69.85 / 2, 15.00, 69.85 / 2, 15.00, 0.00 }
+            // };
+
+            // drg.DimensionDrawing("", 0, 0, 0, 0, 0, 0, dimensionPositions1);
         }
 
         public void CreateDrawing()
