@@ -80,13 +80,23 @@ namespace SolidWorksPressTooling.SwAPI
             var xSecondEdge = xDimCentrePos + (xPositionTwo / 1000);
             var ySecondEdge = yDimCentrePos + (yPositionTwo / 1000);
 
+            int edgeTypeInt = 0;
+
+            if(edgeType == "Edges")
+            {
+                edgeTypeInt = (int)swSelectType_e.swSelEDGES;
+            }
+            else if(edgeType == "Vertices")
+            {
+                edgeTypeInt = (int)swSelectType_e.swSelVERTICES;
+            }
 
             //TODO: change the Edges to vcertices when required etc.
-            swModel.Extension.SelectByRay(xFirstEdge, yFirstEdge, 0, 0, 0, -1, precisionSize / 1000, (int)swSelectType_e.swSelEDGES, false, 0, 0);
+            swModel.Extension.SelectByRay(xFirstEdge, yFirstEdge, 0, 0, 0, -1, precisionSize / 1000, edgeTypeInt, false, 0, 0);
                 
             if (operatorChoice == "Double")
             {
-                swModel.Extension.SelectByRay(xSecondEdge, ySecondEdge, 0, 0, 0, -1, precisionSize / 1000, (int)swSelectType_e.swSelEDGES, true, 0, 0);
+                swModel.Extension.SelectByRay(xSecondEdge, ySecondEdge, 0, 0, 0, -1, precisionSize / 1000, edgeTypeInt, true, 0, 0);
             }
 
             var dimXpos = (dimX / 1000) + xDimCentrePos;

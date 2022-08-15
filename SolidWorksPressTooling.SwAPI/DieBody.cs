@@ -134,7 +134,7 @@ namespace SolidWorksPressTooling.SwAPI
             List<DrawingDimensionPlacement> ListOfDims = new List<DrawingDimensionPlacement>();
             ListOfDims = dieRepo.GetDrawingPlacements();
 
-            
+            //---- DIMENSIONS ----
             //loop through the horizontal and vertical dimensions and place them
             foreach(var dim in ListOfDims)
             {
@@ -145,20 +145,6 @@ namespace SolidWorksPressTooling.SwAPI
 
 
     }    
-
-    
-
-    //var countRows = dimensionPositions.Length / 9;
-
-    //for (var i = 0; i < countRows; i++)
-    //{
-    //    drg.DimensionDrawing("", dimensionPositions[i, 0], dimensionPositions[i, 1],
-    //        dimensionPositions[i, 2], dimensionPositions[i, 3], dimensionPositions[i, 4], dimensionPositions[i, 5],
-    //        dimensionPositions[i, 6], dimensionPositions[i, 7], dimensionPositions[i, 8]); //("", 0, 0, 0, 0, 0, 0, dimensionPositions);
-    //}
-
-
-
 
     public void CreateDrawing()
         {           

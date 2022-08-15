@@ -59,7 +59,7 @@ namespace SolidWorksPressTooling.Data
                         xPositionTwo = 69.85 / 2,
                         yPositionTwo = -22.23,
                         dimX = 0,
-                        dimY = 0.65,
+                        dimY = 80,
                         DimType = "Vertical",
                         EdgeType = "Edges",
                         OperatorChoice = "Double",
@@ -74,6 +74,19 @@ namespace SolidWorksPressTooling.Data
                         dimX = 0,
                         dimY = -80 / 2,
                         DimType = "Vertical",
+                        EdgeType = "Edges",
+                        OperatorChoice = "Double",
+                        precisionSize = 0.10
+                    },
+                    new DrawingDimensionPlacement
+                    {
+                        xPositionOne = -(63.50 / 2),
+                        yPositionsOne = 31.75 - 9.52,
+                        xPositionTwo = -(63.50 / 2),
+                        yPositionTwo = 31.75,
+                        dimX = -45,
+                        dimY = 31.75 + 15,
+                        DimType = "Horizontal",
                         EdgeType = "Edges",
                         OperatorChoice = "Double",
                         precisionSize = 0.10
