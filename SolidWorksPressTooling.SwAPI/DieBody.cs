@@ -2,12 +2,14 @@
 using SolidWorksPressTooling.Data;
 using SolidWorksPressTooling.Models.Tooling;
 using SolidWorks.Interop.swconst;
+using SolidWorksPressTooling.Models.Drawings;
+using System.Diagnostics;
 
 namespace SolidWorksPressTooling.SwAPI
 {
     public class DieBodySW
-    {       
-        SldWorks.SldWorks swApp = (SldWorks.SldWorks)Activator.CreateInstance(System.Type.GetTypeFromProgID("SldWorks.Application"));    
+    {
+        SldWorks.SldWorks swApp = (SldWorks.SldWorks)Activator.CreateInstance(System.Type.GetTypeFromProgID("SldWorks.Application"));
         ModelDoc2 swModel { get; set; }
         PartDoc swPart { get; set; }
         Feature swFeature { get; set; }
@@ -22,7 +24,7 @@ namespace SolidWorksPressTooling.SwAPI
 
         public DieBodySW(double blankDia, double dieDia, double dieRad, double punchRad, double drawLength)
         {
-            
+
             GetDieSizes();
             _blankDia = blankDia;
             _dieDia = dieDia;
@@ -36,7 +38,7 @@ namespace SolidWorksPressTooling.SwAPI
         {
             dieSizes = await dieRepo.GetDieAsync("611");
         }
-       
+
         public void CreateDieBody()
         {
             Rename rename = new Rename();
@@ -49,7 +51,7 @@ namespace SolidWorksPressTooling.SwAPI
 
             //create the body dia sketch
             Sketches circleSketches = new Sketches(swModel);
-            circleSketches.CreateCircleSketch("Top Plane", "PLANE", ((double)dieSizes.BodyOD/2)/1000, 0);
+            circleSketches.CreateCircleSketch("Top Plane", "PLANE", ((double)dieSizes.BodyOD / 2) / 1000, 0);
 
             //create the body potrusion            
             createBodyFeature.CreateFeatureExtrusion(swModel, dieSizes.BodyOAL, dieSizes.MainBodyName);
@@ -62,16 +64,16 @@ namespace SolidWorksPressTooling.SwAPI
 
             //Create bottom diameter
             selectFace.SelectFaceByName(dieSizes.BaseName, swModel);
-            circleSketches.CreateCircleSketch("", "FACES", ((double)dieSizes.BodyBottomStepDia/2)/1000, 0);
+            circleSketches.CreateCircleSketch("", "FACES", ((double)dieSizes.BodyBottomStepDia / 2) / 1000, 0);
             createCutout.CreateFeatureCut(swModel, (double)dieSizes.BodyBottomStepLength, "Bottom Diameter Step", false, 0.01, true, 0);
 
             //Create the top diameter step
             selectFace.SelectFaceByName(dieSizes.TopFaceName, swModel);
-            circleSketches.CreateCircleSketch("", "FACES", ((double)dieSizes.BodyTopStepDia/2)/1000, (double)dieSizes.BodyOAL/1000);
+            circleSketches.CreateCircleSketch("", "FACES", ((double)dieSizes.BodyTopStepDia / 2) / 1000, (double)dieSizes.BodyOAL / 1000);
             createCutout.CreateFeatureCut(swModel, (double)dieSizes.BodyTopStepLength, "Top Step", false, 0.01, true, 0);
 
             //Rename the face where the body and top diameter meet
-            var posX = (double)((dieSizes.BodyTopStepDia + ((dieSizes.BodyOD  - dieSizes.BodyTopStepDia) / 2)) / 1000) / 2;
+            var posX = (double)((dieSizes.BodyTopStepDia + ((dieSizes.BodyOD - dieSizes.BodyTopStepDia) / 2)) / 1000) / 2;
             var posY = (double)(dieSizes.BodyOAL - dieSizes.BodyTopStepLength) / 1000;
             rename.RenameFace(swModel, posX, posY, 0, 0, 1, 0, dieSizes.BodyToTopStepFaceName);
 
@@ -107,6 +109,9 @@ namespace SolidWorksPressTooling.SwAPI
         {
             Drawings drg = new Drawings();
 
+            
+
+
             drg.OpenDrawng();
 
             DrawingDoc swDrawingDoc = default(DrawingDoc);
@@ -126,50 +131,36 @@ namespace SolidWorksPressTooling.SwAPI
             var depth = 34.925 / 1000;
             swDrawingDoc.CreateBreakOutSection(depth);
 
+            List<DrawingDimensionPlacement> ListOfDims = new List<DrawingDimensionPlacement>();
+            ListOfDims = dieRepo.GetDrawingPlacements();
 
-
-
-            //create an array for the dimension positions
-            //xpos1, ypos1, xpos2, ypos2, sum, xdimpos, ydimpos
-            double[ , ] dimensionPositions = 
+            
+            //loop through the horizontal and vertical dimensions and place them
+            foreach(var dim in ListOfDims)
             {
-                //{ -(69.00 / 2), -31.75, 69.00 / 2, -31.75, 1.00, 0, -55, 0.10, 1.00 }, //bottom diameter step
-                { -(69.85 / 2), 22.23, 69.85 / 2, -22.23, 1.00, 0, 65, 0.10, 1.00 }///, //body dia
-                //{ -(63.50 / 2), 31.75, 63.50 / 2, 31.75, 1.00, 0, 55, 0.10, 1.00 }, //Top step diameter
-                //{ -(63.50 / 2), 31.75, -(69.00 / 2), -31.75, 1.00, -55, 0, 0.10, 0.00 },
-                //{ -(69.82 / 2), 22.23, -(63.50 / 2), 31.75, 1.00, 50, 50, 0.10, 0.00 }, //Top step dia length
-                //{ -(69.82 / 2), -26.75, -(69.00 / 2), -31.75, 1.00, -45, -31.75 + 15, 0.10, 0.00 }, //bottom diameter step length
-                //{ -(47.00 / 2), 23.75, 47.00 / 2, 23.75, 1.00, 0, 35, 0.10, 1.00 } //carbide insert diameter
-            };
-
-            var countRows = dimensionPositions.Length / 9;
-
-            for (var i = 0; i < countRows; i++)
-            {
-                drg.DimensionDrawing("", dimensionPositions[i, 0], dimensionPositions[i, 1],
-                    dimensionPositions[i, 2], dimensionPositions[i, 3], dimensionPositions[i, 4], dimensionPositions[i, 5],
-                    dimensionPositions[i, 6], dimensionPositions[i, 7], dimensionPositions[i, 8]); //("", 0, 0, 0, 0, 0, 0, dimensionPositions);
+                    drg.DimensionDrawing("", dim.xPositionOne, dim.yPositionsOne, dim.xPositionTwo,
+                        dim.yPositionTwo, dim.OperatorChoice, dim.dimX, dim.dimY, dim.precisionSize,
+                        dim.DimType, dim.EdgeType);
             }
 
 
+    }    
 
-            //section view
-            
+    
+
+    //var countRows = dimensionPositions.Length / 9;
+
+    //for (var i = 0; i < countRows; i++)
+    //{
+    //    drg.DimensionDrawing("", dimensionPositions[i, 0], dimensionPositions[i, 1],
+    //        dimensionPositions[i, 2], dimensionPositions[i, 3], dimensionPositions[i, 4], dimensionPositions[i, 5],
+    //        dimensionPositions[i, 6], dimensionPositions[i, 7], dimensionPositions[i, 8]); //("", 0, 0, 0, 0, 0, 0, dimensionPositions);
+    //}
 
 
-            // double[,] dimensionPositions1 =
-            // {
-            //{ 69.00 / 2, 31.75, 0, 0, 2.00, 0, -55 }//, //bottom diameter step
-            //     { 69.85 / 2, 26.75, 0, 0, 2.00, 0, -65 } //body dia
-            //{ 69.00 / 2, 63.50 / 2, 63.50 / 2, 63.50 / 2, 0.00 },  //OAL
-            //{ 63.50 / 2, 63.50 / 2, 63.50 / 2, 63.50 / 2, 1.00 }//,  //top dia step                
-            // { 69.85 / 2, 15.00, 69.85 / 2, 15.00, 0.00 }
-            // };
 
-            // drg.DimensionDrawing("", 0, 0, 0, 0, 0, 0, dimensionPositions1);
-        }
 
-        public void CreateDrawing()
+    public void CreateDrawing()
         {           
             var modelLocation = @"C:\Users\cabuk\Desktop\DieBodyModel.SLDDRW";
 

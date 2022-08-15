@@ -30,10 +30,17 @@ namespace SolidWorksPressTooling.SwAPI
                                         "", 0, 0);
         }
 
+
+
+        //string modelLocation, double xPositionOne,
+        //            double yPositionOne, double xPositionTwo, double yPositionTwo,
+        //            double operatorChoice, double dimX, double dimY,
+        //            double precisionSize, double dimType, double edgeType
+
         public void DimensionDrawing(string modelLocation, double xPositionOne,
                     double yPositionOne, double xPositionTwo, double yPositionTwo, 
-                    double operatorChoice, double dimX, double dimY, 
-                    double precisionSize, double dimType)
+                    string operatorChoice, double dimX, double dimY, 
+                    double precisionSize, string dimType, string edgeType)
         {
             DrawingDoc swDrawingDoc = default(DrawingDoc); // swModel;
             SelectionMgr swSelMgr = default(SelectionMgr);
@@ -73,21 +80,23 @@ namespace SolidWorksPressTooling.SwAPI
             var xSecondEdge = xDimCentrePos + (xPositionTwo / 1000);
             var ySecondEdge = yDimCentrePos + (yPositionTwo / 1000);
 
-            swModel.Extension.SelectByRay(xFirstEdge, yFirstEdge, 0, 0, 0, -1, precisionSize / 1000, (int)swSelectType_e.swSelVERTICES, false, 0, 0);
+
+            //TODO: change the Edges to vcertices when required etc.
+            swModel.Extension.SelectByRay(xFirstEdge, yFirstEdge, 0, 0, 0, -1, precisionSize / 1000, (int)swSelectType_e.swSelEDGES, false, 0, 0);
                 
-            if (operatorChoice == 1.00)
+            if (operatorChoice == "Double")
             {
-                swModel.Extension.SelectByRay(xSecondEdge, ySecondEdge, 0, 0, 0, -1, precisionSize / 1000, (int)swSelectType_e.swSelVERTICES, true, 0, 0);
+                swModel.Extension.SelectByRay(xSecondEdge, ySecondEdge, 0, 0, 0, -1, precisionSize / 1000, (int)swSelectType_e.swSelEDGES, true, 0, 0);
             }
 
             var dimXpos = (dimX / 1000) + xDimCentrePos;
             var dimYpos = (dimY / 1000) + yDimCentrePos; 
             
-            if(dimType == 0) //vertical
+            if(dimType == "Vertical") //vertical
             {
                 swDispDim = (DisplayDimension)swModel.AddVerticalDimension2(dimXpos, dimYpos, 0.00);
             }
-            else if(dimType == 1) //horizontal
+            else if(dimType == "Horizontal") //horizontal
             {
                 swDispDim = (DisplayDimension)swModel.AddHorizontalDimension2(dimXpos, dimYpos, 0.00);
             }

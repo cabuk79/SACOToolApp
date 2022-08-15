@@ -21,6 +21,7 @@
   android:layout_height="@dimen/mtrl_calendar_header_height_fullscreen">
 
   <LinearLayout
+    android:id="@+id/fullscreen_header"
     style="?attr/materialCalendarHeaderLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/mtrl_calendar_header_height_fullscreen"
@@ -52,7 +53,9 @@
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:paddingStart="@dimen/mtrl_calendar_header_text_padding"
-      android:paddingLeft="@dimen/mtrl_calendar_header_text_padding">
+      android:paddingLeft="@dimen/mtrl_calendar_header_text_padding"
+      android:focusable="true"
+      android:focusableInTouchMode="true">
 
       <TextView
         android:id="@+id/mtrl_picker_title_text"

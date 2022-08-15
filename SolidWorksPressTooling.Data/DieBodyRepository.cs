@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SolidWorksPressTooling.Data.Contracts;
+using SolidWorksPressTooling.Models.Drawings;
 using SolidWorksPressTooling.Models.Tooling;
 
 namespace SolidWorksPressTooling.Data
@@ -11,6 +13,7 @@ namespace SolidWorksPressTooling.Data
     public class DieBodyRepository : IDieBodyRepositories
     {
         public List<DieBody> Dies = new();
+        public List<DrawingDimensionPlacement> DieDrawingPlacement = new List<DrawingDimensionPlacement>();
 
         public DieBodyRepository()
         {
@@ -42,6 +45,42 @@ namespace SolidWorksPressTooling.Data
         {
             var die = Dies.Single(s => s.PressSize == pressSize);
             return die;
+        }
+
+        public List<DrawingDimensionPlacement> GetDrawingPlacements()
+        {
+
+            List<DrawingDimensionPlacement> DimensionPlacementList = new List<DrawingDimensionPlacement>
+                {
+                    new DrawingDimensionPlacement
+                    {
+                        xPositionOne = -(69.85 / 2),
+                        yPositionsOne = 22.23,
+                        xPositionTwo = 69.85 / 2,
+                        yPositionTwo = -22.23,
+                        dimX = 0,
+                        dimY = 0.65,
+                        DimType = "Vertical",
+                        EdgeType = "Edges",
+                        OperatorChoice = "Double",
+                        precisionSize = 0.10
+                    },
+                    new DrawingDimensionPlacement
+                    {
+                        xPositionOne = -(69.00 / 2),
+                        yPositionsOne = -31.75,
+                        xPositionTwo = 69.00 / 2,
+                        yPositionTwo = -31.75,
+                        dimX = 0,
+                        dimY = -80 / 2,
+                        DimType = "Vertical",
+                        EdgeType = "Edges",
+                        OperatorChoice = "Double",
+                        precisionSize = 0.10
+                    }
+                };
+
+            return DimensionPlacementList;
         }
     }
 }

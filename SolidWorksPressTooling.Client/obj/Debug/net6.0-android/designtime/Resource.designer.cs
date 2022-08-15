@@ -14,7 +14,7 @@ namespace SolidWorksPressTooling.Client
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.3.99.45")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.3.99.40")]
 	public partial class Resource
 	{
 		
